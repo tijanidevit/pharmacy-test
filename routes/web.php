@@ -26,7 +26,10 @@ Route::get('/', function () {
     return to_route('login');
 })->name('welcome');
 
-
+Route::prefix('login')->middleware('guest')->group(function () {
+    Route::get('',[LoginController::class,'getLoginPage'])->name('login');
+    Route::post('',[LoginController::class,'loginAction'])->name('loginAction');
+});
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('',function () {

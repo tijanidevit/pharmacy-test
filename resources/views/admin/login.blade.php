@@ -83,7 +83,7 @@
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
                     <div class="log-in-box">
                         <div class="log-in-title">
-                            <h3 class="mb-3 text-center">Jendol Admin</h3>
+                            <h3 class="mb-3 text-center">Lytton Pharmacy</h3>
                             <h4>Log In Your Account</h4>
                         </div>
 
@@ -112,7 +112,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <button class="btn btn-animation w-100 justify-content-center" type="submit">Log
+                                    <button class="btn btn-animation bg-success w-100 justify-content-center" type="submit">Log
                                         In</button>
                                 </div>
                             </form>
