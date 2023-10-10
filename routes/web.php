@@ -1,15 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SaleController;
-use App\Http\Controllers\ModeratorController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\SaleController as AdminSaleController;
+use App\Http\Controllers\Admin\ModeratorController as AdminModeratorController;
+use App\Http\Controllers\Admin\NotificationController as AdminNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,48 +24,60 @@ Route::get('/', function () {
     return to_route('login');
 })->name('welcome');
 
-Route::prefix('login')->middleware('guest')->group(function () {
-    Route::get('',[LoginController::class,'getLoginPage'])->name('login');
-    Route::post('',[LoginController::class,'loginAction'])->name('loginAction');
+Route::middleware('guest')->group(function () {
+    Route::view('login', 'auth.login')->name('login');
+    Route::post('login',[AuthController::class,'loginAction'])->name('loginAction');
 });
 
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
-    Route::get('',function () {
-        return to_route('dashboard');
-    })->name('home');
-    Route::get('dashboard',[DashboardController::class,'getDashboardPage'])->name('dashboard');
-    Route::get('notidications',[DashboardController::class,'getSearchResult'])->name('notifications');
 
-    // Route::get('settings',[SettingController::class,'getSettingsPage'])->name('settings');
+Route::middleware('auth')->group(function () {
 
-    Route::get('logout',[LoginController::class,'logout'])->name('logout');
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
 
-    Route::prefix('products')->as('product.')->group(function () {
-        Route::get('', [ProductController::class, 'index'])->name('index');
-        Route::get('new', [ProductController::class, 'create'])->name('create');
-        Route::post('', [ProductController::class, 'store'])->name('store');
-        Route::delete('{product}', [ProductController::class, 'destroy'])->name('delete');
-        Route::get('{product}', [ProductController::class, 'show'])->name('show');
+    Route::prefix('admin')->as('admin.')->middleware(['isAdmin'])->group(function () {
+        Route::get('',function () {
+            return to_route('dashboard');
+        })->name('home');
+        Route::get('dashboard',[AdminDashboardController::class,'getDashboardPage'])->name('dashboard');
+        Route::get('search',[AdminDashboardController::class,'getSearchResult'])->name('notifications');
+
+        // Route::get('settings',[SettingController::class,'getSettingsPage'])->name('settings');
+
+
+        Route::prefix('products')->as('product.')->group(function () {
+            Route::get('', [AdminProductController::class, 'index'])->name('index');
+            Route::get('new', [AdminProductController::class, 'create'])->name('create');
+            Route::post('', [AdminProductController::class, 'store'])->name('store');
+            Route::delete('{product}', [AdminProductController::class, 'destroy'])->name('delete');
+            Route::get('{product}', [AdminProductController::class, 'show'])->name('show');
+        });
+
+        Route::prefix('categories')->as('category.')->group(function () {
+            Route::get('', [AdminCategoryController::class, 'index'])->name('index');
+            Route::get('new', [AdminCategoryController::class, 'create'])->name('create');
+            Route::post('', [AdminCategoryController::class, 'store'])->name('store');
+            Route::get('{category}', [AdminCategoryController::class, 'show'])->name('show');
+            Route::delete('{category}', [AdminCategoryController::class, 'destroy'])->name('delete');
+        });
+
+        Route::prefix('sales')->as('sale.')->group(function () {
+            Route::get('', [AdminSaleController::class, 'index'])->name('index');
+            Route::get('new', [AdminSaleController::class, 'create'])->name('create');
+            Route::post('', [AdminSaleController::class, 'store'])->name('store');
+            Route::post('{sale}', [AdminSaleController::class, 'store'])->name('show');
+            Route::delete('{sale}', [AdminSaleController::class, 'destroy'])->name('delete');
+        });
+
+        Route::prefix('notifications')->as('notification.')->group(function () {
+            Route::get('', [AdminNotificationController::class, 'index'])->name('index');
+        });
     });
 
-    Route::prefix('categories')->as('category.')->group(function () {
-        Route::get('', [CategoryController::class, 'index'])->name('index');
-        Route::get('new', [CategoryController::class, 'create'])->name('create');
-        Route::post('', [CategoryController::class, 'store'])->name('store');
-        Route::get('{category}', [CategoryController::class, 'show'])->name('show');
-        Route::delete('{category}', [CategoryController::class, 'destroy'])->name('delete');
+    Route::prefix('customer')->as('customer.')->middleware(['isCustomer'])->group(function () {
+        Route::get('',function () {
+            return to_route('dashboard');
+        })->name('home');
     });
 
-    Route::prefix('sales')->as('sale.')->group(function () {
-        Route::get('', [SaleController::class, 'index'])->name('index');
-        Route::get('new', [SaleController::class, 'create'])->name('create');
-        Route::post('', [SaleController::class, 'store'])->name('store');
-        Route::post('{sale}', [SaleController::class, 'store'])->name('show');
-        Route::delete('{sale}', [SaleController::class, 'destroy'])->name('delete');
-    });
-
-    Route::prefix('notifications')->as('notification.')->group(function () {
-        Route::get('', [NotificationController::class, 'index'])->name('index');
-    });
 });
 

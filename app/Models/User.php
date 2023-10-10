@@ -40,6 +40,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function scopeOnlyCustomers($query) {
+        return $query->where('role', UserRoleEnum::CUSTOMER);
+    }
+
+    public function scopeOnlyPartners($query) {
+        return $query->where('role', UserRoleEnum::PARTNER);
+    }
+
     public function isAdmin()
     {
        return $this->role == UserRoleEnum::ADMIN;

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller\Admin;
 use App\Services\ModeratorService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Moderator\AddModeratorRequest;
 
-class ModeratorController extends Controller
+class CustomerController extends Controller
 {
-    public function __construct(protected ModeratorService $moderatorService) {}
+    public function __construct(protected CustomerService $moderatorService) {}
 
     public function index() : View
     {

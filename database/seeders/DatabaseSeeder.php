@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Enums\UserRoleEnum;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,16 +17,10 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory()->create([
-            'name' => 'Jendol Admin',
-            'email' => 'admin@jendol.com',
+            'name' => 'Lytton Pharmacy',
+            'email' => 'admin@lytton.com',
             'role' => UserRoleEnum::ADMIN,
+            'password' => Hash::make('password') //can be changed later on,
         ]); //Add Admin
-
-        User::factory(5)->create(); //Add sub admin
-
-        // $this->call(CategorySeeder::class);
-        // $this->call(ProductSeeder::class);
-        // $this->call(SettingSeeder::class);
-        // $this->call(StockSeeder::class);
     }
 }

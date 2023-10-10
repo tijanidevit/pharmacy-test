@@ -5,7 +5,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
 
-class LoginService {
+class AuthService {
 
 
     public function login($data) : bool {

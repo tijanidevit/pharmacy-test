@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Services\DashboardService;
 use Illuminate\Contracts\View\View;
@@ -12,6 +12,6 @@ class DashboardController extends Controller
 
     public function getDashboardPage() : View {
         $data = $this->dashboardService->getDashboardData();
-        return view('admin.dashboard', compact('data'));
+        return view('admin.dashboard', $data);
     }
 }
