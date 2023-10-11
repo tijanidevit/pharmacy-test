@@ -12,7 +12,9 @@
                 <div class="card-header-title">
                     <h4 class="mb-2">{{ $product->name }}</h4>
 
-                    <p>{{$product->description}}</p>
+                    <p>Description: {{$product->description}}</p>
+                    <p>Added by: {{$product->owner?->name}}</p>
+                    <p>Category: {{$product->category?->name}}</p>
                 </div>
             </div>
 
@@ -25,12 +27,8 @@
                         <table class="table all-package theme-table table-product" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
                                     <th>Purchase date</th>
-                                    <th>Expiry date</th>
-                                    <th>Expiry status</th>
-                                    <th>Ordered quantity</th>
-                                    <th>Remaining quantity</th>
+                                    <th>Quantity</th>
                                     <th>Price</th>
                                     {{-- <th>Option</th> --}}
                                 </tr>
@@ -40,11 +38,8 @@
                                 @forelse ($product->sales as $sale)
                                 <tr>
 
-                                    <td>{{$sale->name}}</td>
-                                    <td>{{$sale->formatDate('purchase_date')}}</td>
-                                    <td>{{$sale->expiry_status}}</td>
+                                    <td>{{$sale->created_at->format('d-m-Y')}}</td>
                                     <td>{{$sale->quantity}}</td>
-                                    <td>{{$sale->remaining_quantity}}</td>
                                     <td>&#8358;{{$sale->price}}</td>
                                 </tr>
 

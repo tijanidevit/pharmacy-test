@@ -19,7 +19,7 @@ class ProductService {
     }
 
     public function getProduct($id) : Product|null {
-        return $this->product->with('owner', 'category')->whereId($id)->first();
+        return $this->product->with('owner', 'category', 'sales')->whereId($id)->first();
     }
 
     public function deleteProduct($id) : bool {
