@@ -13,25 +13,25 @@
 
 ### Brief Description
 
--   Admin
+#### Admin
 
-*   Can add and view all customers
-*   Can add and view all categories
-*   Can add and view all products and products sales
-*   Can view all partners, their products and sales
+-   Can add and view all customers
+-   Can add and view all categories
+-   Can add and view all products and products sales
+-   Can view all partners, their products and sales
 
--   Customers
+#### Customers
 
-*   Customers can either register or be added by the admin
-*   Customers can see products and order products
-*   Customers can then make payments
+-   Customers can either register or be added by the admin
+-   Customers can see products and order products
+-   Customers can then make payments
 
--   Partners
+#### Partners
 
-*   Can add and view all products and products sales
-*   All activities are via a restful endpoints. Postman Details Below
+-   Can add and view all products and products sales
+-   All activities are via a restful endpoints. Postman Details Below
 
-### Postman Collection
+##### Postman Collection
 
 -   [Postman Collection](https://documenter.getpostman.com/)
 -   It contains some documentation
