@@ -69,8 +69,6 @@
                         </ul>
                     </li>
 
-                    `
-
                     <li class="sidebar-list">
                         <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                             <i class="ri-archive-line"></i>
@@ -87,22 +85,20 @@
                         </ul>
                     </li>
 
-                    @if (auth()->user()->isAdmin())
-                        {{-- <li class="sidebar-list">
-                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                <i class="ri-user-3-line"></i>
-                                <span>Moderators</span>
-                            <div class="according-menu"><i class="ri-arrow-right-s-line"></i></div></a>
-                            <ul class="sidebar-submenu" style="display: none;">
-                                <li>
-                                    <a href="{{route('admin.moderator.index')}}" class="active">All moderators</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('admin.moderator.create')}}">Add new moderators</a>
-                                </li>
-                            </ul>
-                        </li> --}}
-                    @endif
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i class="ri-user-3-line"></i>
+                            <span>Customers</span>
+                        <div class="according-menu"><i class="ri-arrow-right-s-line"></i></div></a>
+                        <ul class="sidebar-submenu" style="display: none;">
+                            <li>
+                                <a href="{{route('admin.customer.index')}}" class="active">All customers</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.customer.create')}}">Add new customers</a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

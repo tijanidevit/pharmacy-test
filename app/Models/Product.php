@@ -18,9 +18,14 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function stocks(): HasMany
+    public function owner(): BelongsTo
     {
-        return $this->hasMany(Stock::class);
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function sales(): HasMany
+    {
+        return $this->hasMany(Sale::class);
     }
 
 }

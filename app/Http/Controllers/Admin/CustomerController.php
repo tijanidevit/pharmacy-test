@@ -1,38 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Http\Controllers\Controller\Admin;
-use App\Services\ModeratorService;
+use App\Http\Controllers\Controller;
+use App\Services\CustomerService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\Moderator\AddModeratorRequest;
+use App\Http\Requests\Customer\AddCustomerRequest;
 
 class CustomerController extends Controller
 {
-    public function __construct(protected CustomerService $moderatorService) {}
+    public function __construct(protected CustomerService $customerService) {}
 
     public function index() : View
     {
-        $moderators = $this->moderatorService->getAllModerators();
-        return view('admin.moderators.index', compact('moderators'));
+        $customers = $this->customerService->getAllCustomers();
+        return view('admin.customers.index', compact('customers'));
     }
 
     public function create() : View
     {
-        return view('admin.moderators.create');
+        return view('admin.customers.create');
     }
 
-    public function store(AddModeratorRequest $request): RedirectResponse
+    public function store(AddCustomerRequest $request): RedirectResponse
     {
-        $this->moderatorService->addModerator($request->validated());
-        return to_route('moderator.index')->with('success', 'Moderator added successfully!');
+        $this->customerService->addCustomer($request->validated());
+        return to_route('admin.customer.index')->with('success', 'Customer added successfully!');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $this->moderatorService->deleteModerator($user);
-        return to_route('moderator.index')->with('success', 'Moderator deleted successfully!');
+        $this->customerService->deleteCustomer($id);
+        return to_route('admin.customer.index')->with('success', 'Customer deleted successfully!');
     }
 }

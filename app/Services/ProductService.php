@@ -18,12 +18,12 @@ class ProductService {
         return $this->product->create($data);
     }
 
-    public function getProduct($product) : Product {
-        return $product->load('stocks');
+    public function getProduct($id) : Product|null {
+        return $this->product->with('owner', 'category')->whereId($id)->first();
     }
 
-    public function deleteProduct($product) : bool {
-        return $product->delete();
+    public function deleteProduct($id) : bool {
+        return $this->product->whereId($id)->delete();
     }
 
     public function getProductStocks($product) : Collection {

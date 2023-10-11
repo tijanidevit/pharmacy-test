@@ -11,13 +11,6 @@
             <div class="card-body">
                 <div class="title-header option-title d-sm-flex d-bale">
                     <h5>Sales List</h5>
-                    <div class="right-options">
-                        <ul>
-                            <li>
-                                <a class="btn btn-solid" href="{{route('sale.create')}}">Add Sale</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div>
                     @if (session('success'))
@@ -43,6 +36,7 @@
                                     <td>{{$sale->stock?->batch_no}}</td>
                                     <td>{{$sale->product?->name}}</td>
                                     <td>{{$sale->quantity}}</td>
+                                    <td>{{$sale->owner->name}}</td>
                                     <td>{{$sale->created_at}}</td>
 
                                     <td>
@@ -72,7 +66,7 @@
                                                     <p>Deleting this sales will remove its reocrd and related records</p>
                                                 </div>
                                             </div>
-                                            <form class="modal-footer" method="POST" action="{{route('sale.delete', $sale->id)}}">
+                                            <form class="modal-footer" method="POST" action="{{route('admin.sale.delete', $sale->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="d-flex justify-content-center my-3" style="gap: 9px">

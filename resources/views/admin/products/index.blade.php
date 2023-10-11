@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Owner (Pharmacy)</th>
                                     <th>Category</th>
                                     <th>Option</th>
                                 </tr>
@@ -44,6 +45,8 @@
                                     </td>
 
                                     <td>{{$product->name}}</td>
+
+                                    <td>{{$product->owner->name}}</td>
 
                                     <td>{{$product->category?->name}}</td>
 

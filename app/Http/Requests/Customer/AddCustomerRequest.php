@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Moderator;
+namespace App\Http\Requests\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddModeratorRequest extends FormRequest
+class AddCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,9 @@ class AddModeratorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:categories',
+            'name' => 'required|string',
             'email' => 'required|email|unique:users',
+            'address' => 'required|string',
             'image' => 'required|file|mimetypes:image/png,image/jpg,image/jpeg,image/svg|max:5024',
         ];
     }
@@ -31,7 +32,7 @@ class AddModeratorRequest extends FormRequest
     public function messages() : array {
         return [
             'image.max' => 'Image size cannot be more than 5MB',
-            'email.users' => 'A moderator with this email address already added',
+            'email.users' => 'A user with this email address already added',
         ];
     }
 }

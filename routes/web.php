@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\SaleController as AdminSaleController;
-use App\Http\Controllers\Admin\ModeratorController as AdminModeratorController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\NotificationController as AdminNotificationController;
 
 /*
@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
             Route::get('', [AdminProductController::class, 'index'])->name('index');
             Route::get('new', [AdminProductController::class, 'create'])->name('create');
             Route::post('', [AdminProductController::class, 'store'])->name('store');
-            Route::delete('{product}', [AdminProductController::class, 'destroy'])->name('delete');
-            Route::get('{product}', [AdminProductController::class, 'show'])->name('show');
+            Route::delete('{id}', [AdminProductController::class, 'destroy'])->name('delete');
+            Route::get('{id}', [AdminProductController::class, 'show'])->name('show');
         });
 
         Route::prefix('categories')->as('category.')->group(function () {
@@ -64,8 +64,14 @@ Route::middleware('auth')->group(function () {
             Route::get('', [AdminSaleController::class, 'index'])->name('index');
             Route::get('new', [AdminSaleController::class, 'create'])->name('create');
             Route::post('', [AdminSaleController::class, 'store'])->name('store');
-            Route::post('{sale}', [AdminSaleController::class, 'store'])->name('show');
-            Route::delete('{sale}', [AdminSaleController::class, 'destroy'])->name('delete');
+            Route::get('{id}', [AdminSaleController::class, 'store'])->name('show');
+        });
+
+        Route::prefix('customers')->as('customer.')->group(function () {
+            Route::get('', [AdminCustomerController::class, 'index'])->name('index');
+            Route::get('new', [AdminCustomerController::class, 'create'])->name('create');
+            Route::post('', [AdminCustomerController::class, 'store'])->name('store');
+            Route::get('{id}', [AdminCustomerController::class, 'store'])->name('show');
         });
 
         Route::prefix('notifications')->as('notification.')->group(function () {

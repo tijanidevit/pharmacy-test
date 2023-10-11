@@ -32,16 +32,15 @@ class ProductController extends Controller
         return to_route('admin.product.index')->with('success', 'Product added successfully!');
     }
 
-    public function show(Product $product) : View
+    public function show($id) : View
     {
-        $product = $this->productService->getProduct($product);
-        $stocks = $product->stocks;
-        return view('admin.products.show', compact('product','stocks'));
+        $product = $this->productService->getProduct($id);
+        return view('admin.products.show', compact('product'));
     }
 
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $product = $this->productService->deleteProduct($product);
+        $this->productService->deleteProduct($id);
         return to_route('admin.product.index')->with('success', 'Product deleted successfully!');
     }
 }

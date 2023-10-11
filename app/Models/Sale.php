@@ -17,13 +17,8 @@ class Sale extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function stock(): BelongsTo
+    public function owner(): BelongsTo
     {
-        return $this->belongsTo(Stock::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'added_by');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }

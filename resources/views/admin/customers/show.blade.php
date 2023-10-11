@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 
 @section('title')
-   {{$category->name}}
+   {{$customer->name}}
 @endsection
 
 @section('body')
@@ -10,7 +10,7 @@
         <div class="card o-hidden card-hover">
             <div class="card-header card-header-top card-header--2 px-0 pt-0">
                 <div class="card-header-title">
-                    <h4>{{ $category->name }} products</h4>
+                    <h4>{{ $customer->name }} purchases</h4>
                 </div>
             </div>
 
@@ -29,20 +29,20 @@
                         </thead>
 
                         <tbody>
-                            @forelse ($category->products as $product)
+                            @forelse ($customer->sales as $sale)
                             <tr>
                                 <td>
                                     <div class="table-image">
-                                        <img src="{{$product->image}}" class="img-fluid"alt="">
+                                        <img src="{{$sale->image}}" class="img-fluid"alt="">
                                     </div>
                                 </td>
 
-                                <td>{{$product->name}}</td>
+                                <td>{{$sale->name}}</td>
 
                                 <td>
                                     <ul>
-                                        <li title="View product">
-                                            <a href="{{route('product.show', $product->id)}}">
+                                        <li title="View sale">
+                                            <a href="{{route('sale.show', $sale->id)}}">
                                                 <i class="ri-eye-line"></i>
                                             </a>
                                         </li>
@@ -50,7 +50,7 @@
                                 </td>
                             </tr>
                             @empty
-                            <p>No product added yet</p>
+                            <p>No purchases made yet</p>
                             @endforelse
                         </tbody>
                     </table>

@@ -10,7 +10,9 @@
         <div class="card o-hidden card-hover">
             <div class="card-header card-header-top card-header--2 px-0 pt-0">
                 <div class="card-header-title">
-                    <h4>{{ $product->name }} sales</h4>
+                    <h4 class="mb-2">{{ $product->name }}</h4>
+
+                    <p>{{$product->description}}</p>
                 </div>
             </div>
 
@@ -23,7 +25,7 @@
                         <table class="table all-package theme-table table-product" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Batch number</th>
+                                    <th>Name</th>
                                     <th>Purchase date</th>
                                     <th>Expiry date</th>
                                     <th>Expiry status</th>
@@ -35,30 +37,15 @@
                             </thead>
 
                             <tbody>
-                                @forelse ($stocks as $stock)
+                                @forelse ($product->sales as $sale)
                                 <tr>
 
-                                    <td>{{$stock->batch_no}}</td>
-                                    <td>{{$stock->formatDate('purchase_date')}}</td>
-                                    <td @class(['text-danger' => $stock->hasExpired(),'text-success' => !$stock->hasExpired()])>{{$stock->formatDate('expiry_date')}}</td>
-                                    <td @class(['text-danger' => $stock->hasExpired(),'text-success' => !$stock->hasExpired()])>{{$stock->expiry_status}}</td>
-                                    <td>{{$stock->quantity}}</td>
-                                    <td>{{$stock->remaining_quantity}}</td>
-                                    <td>&#8358;{{$stock->price}}</td>
-
-                                    {{-- <td>
-                                        <ul>
-                                            <li title="Delete stock">
-                                                <form title="Delete stock" action="{{ route('stock.delete', $stock->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn text-danger">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </td> --}}
+                                    <td>{{$sale->name}}</td>
+                                    <td>{{$sale->formatDate('purchase_date')}}</td>
+                                    <td>{{$sale->expiry_status}}</td>
+                                    <td>{{$sale->quantity}}</td>
+                                    <td>{{$sale->remaining_quantity}}</td>
+                                    <td>&#8358;{{$sale->price}}</td>
                                 </tr>
 
                                 @empty
