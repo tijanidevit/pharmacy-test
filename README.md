@@ -1,4 +1,4 @@
-## This repo is a basic test repo. It is a simple task management project built with Laravel
+## This repo is a basic test repo. It is a pharmacy project built with Laravel
 
 ### Setup
 
