@@ -14,7 +14,7 @@
                     <div class="right-options">
                         <ul>
                             <li>
-                                <a class="btn btn-solid" href="{{route('moderator.create')}}">Add Moderator</a>
+                                <a class="btn btn-solid" href="{{route('admin.moderator.create')}}">Add Moderator</a>
                             </li>
                         </ul>
                     </div>
@@ -51,7 +51,7 @@
                                     <td>
                                         <ul>
                                             <li title="View moderator">
-                                                <a href="{{route('moderator.show', $moderator->id)}}">
+                                                <a href="{{route('admin.moderator.show', $moderator->id)}}">
                                                     <i class="ri-eye-line"></i>
                                                 </a>
                                             </li>
@@ -80,7 +80,7 @@
                                                     <p>Deleting <strong>{{$moderator->name}}</strong> will remove their reocrd and related records</p>
                                                 </div>
                                             </div>
-                                            <form class="modal-footer" method="POST" action="{{route('moderator.delete', $moderator->id)}}">
+                                            <form class="modal-footer" method="POST" action="{{route('admin.moderator.delete', $moderator->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="d-flex justify-content-center my-3" style="gap: 9px">

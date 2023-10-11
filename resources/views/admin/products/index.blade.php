@@ -14,7 +14,7 @@
                     <div class="right-options">
                         <ul>
                             <li>
-                                <a class="btn btn-solid" href="{{route('product.create')}}">Add Product</a>
+                                <a class="btn btn-solid" href="{{route('admin.product.create')}}">Add Product</a>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +50,7 @@
                                     <td>
                                         <ul>
                                             <li title="View product">
-                                                <a href="{{route('product.show', $product->id)}}">
+                                                <a href="{{route('admin.product.show', $product->id)}}">
                                                     <i class="ri-eye-line"></i>
                                                 </a>
                                             </li>
@@ -79,7 +79,7 @@
                                                     <p>Deleting <strong>{{$product->name}}</strong> will remove its reocrd and related records</p>
                                                 </div>
                                             </div>
-                                            <form class="modal-footer" method="POST" action="{{route('product.delete', $product->id)}}">
+                                            <form class="modal-footer" method="POST" action="{{route('admin.product.delete', $product->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="d-flex justify-content-center my-3" style="gap: 9px">

@@ -27,19 +27,21 @@ class CategoryController extends Controller
     public function store(AddCategoryRequest $request): RedirectResponse
     {
         $this->categoryService->addCategory($request->validated());
-        return to_route('category.index')->with('success', 'Category added successfully!');
+        return to_route('admin.category.index')->with('success', 'Category added successfully!');
     }
 
-    public function show(Category $category) : View
+    public function show($category) : View
     {
         $category = $this->categoryService->getCategory($category);
-        $stocks = $category->stocks;
-        return view('admin.categories.show', compact('category','stocks'));
+        if(!$category){
+            abort(404, 'Category not found');
+        }
+        return view('admin.categories.show', compact('category'));
     }
 
-    public function destroy(Category $category)
+    public function destroy($category)
     {
         $category = $this->categoryService->deleteCategory($category);
-        return to_route('category.index')->with('success', 'Category deleted successfully!');
+        return to_route('admin.category.index')->with('success', 'Category deleted successfully!');
     }
 }

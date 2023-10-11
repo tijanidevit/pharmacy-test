@@ -42,7 +42,7 @@
                                 <td>
                                     <ul>
                                         <li title="View product">
-                                            <a href="{{route('product.show', $product->id)}}">
+                                            <a href="{{route('admin.product.show', $product->id)}}">
                                                 <i class="ri-eye-line"></i>
                                             </a>
                                         </li>

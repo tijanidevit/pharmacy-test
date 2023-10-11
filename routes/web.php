@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
             Route::get('', [AdminCategoryController::class, 'index'])->name('index');
             Route::get('new', [AdminCategoryController::class, 'create'])->name('create');
             Route::post('', [AdminCategoryController::class, 'store'])->name('store');
-            Route::get('{category}', [AdminCategoryController::class, 'show'])->name('show');
-            Route::delete('{category}', [AdminCategoryController::class, 'destroy'])->name('delete');
+            Route::get('{id}', [AdminCategoryController::class, 'show'])->name('show');
+            Route::delete('{id}', [AdminCategoryController::class, 'destroy'])->name('delete');
         });
 
         Route::prefix('sales')->as('sale.')->group(function () {

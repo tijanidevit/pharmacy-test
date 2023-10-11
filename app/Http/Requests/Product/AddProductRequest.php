@@ -24,6 +24,9 @@ class AddProductRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|unique:products',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'description' => 'required|string',
             'image' => 'required|file|mimetypes:image/png,image/jpg,image/jpeg,image/svg|max:5024',
         ];
     }

@@ -23,13 +23,7 @@ class AddCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:categories',
-            'image' => 'required|file|mimetypes:image/png,image/jpg,image/jpeg,image/svg|max:5024',
-        ];
-    }
-
-    public function messages() : array {
-        return [
-            'image.max' => 'Image size cannot be more than 5MB',
+            // 'image' => 'required|file|mimetypes:image/png,image/jpg,image/jpeg,image/svg|max:5024',
         ];
     }
 }

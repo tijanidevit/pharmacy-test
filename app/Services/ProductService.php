@@ -14,7 +14,7 @@ class ProductService {
 
     public function addProduct($data) : Product {
         $data['image'] = $this->uploadFile('images/products/',$data['image']);
-        $data['added_by'] = auth()->id();
+        $data['owner_id'] = auth()->id();
         return $this->product->create($data);
     }
 

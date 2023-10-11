@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function store(AddProductRequest $request): RedirectResponse
     {
         $this->productService->addProduct($request->validated());
-        return to_route('product.index')->with('success', 'Product added successfully!');
+        return to_route('admin.product.index')->with('success', 'Product added successfully!');
     }
 
     public function show(Product $product) : View
@@ -42,6 +42,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product = $this->productService->deleteProduct($product);
-        return to_route('product.index')->with('success', 'Product deleted successfully!');
+        return to_route('admin.product.index')->with('success', 'Product deleted successfully!');
     }
 }

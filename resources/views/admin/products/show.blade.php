@@ -10,7 +10,7 @@
         <div class="card o-hidden card-hover">
             <div class="card-header card-header-top card-header--2 px-0 pt-0">
                 <div class="card-header-title">
-                    <h4>{{ $product->name }} stocks</h4>
+                    <h4>{{ $product->name }} sales</h4>
                 </div>
             </div>
 

@@ -15,24 +15,13 @@
                             <h5>Category Information</h5>
                         </div>
 
-                        <form class="theme-form theme-form-2 mega-form" method="POST" enctype="multipart/form-data" action="{{route('category.store')}}">
+                        <form class="theme-form theme-form-2 mega-form" method="POST" action="{{route('admin.category.store')}}">
                             @csrf
                             <div class="mb-4 row align-items-center">
                                 <label class="form-label-title col-sm-3 mb-0">Category Name</label>
                                 <div class="col-sm-9">
                                     <input required class="form-control" name="name" value="{{old('name')}}" type="text" placeholder="Category Name">
                                     @error('name')
-                                    <p class="text-danger">{{$message}}</p>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="mb-4 row align-items-center">
-                                <label
-                                    class="col-sm-3 col-form-label form-label-title">Image</label>
-                                <div class="col-sm-9">
-                                    <input required name="image" class="form-control form-choose" type="file" accept="image/*">
-                                    @error('image')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
                                 </div>

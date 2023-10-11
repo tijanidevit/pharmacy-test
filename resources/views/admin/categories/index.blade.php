@@ -14,7 +14,7 @@
                     <div class="right-options">
                         <ul>
                             <li>
-                                <a class="btn btn-solid" href="{{route('category.create')}}">Add Category</a>
+                                <a class="btn btn-solid" href="{{route('admin.category.create')}}">Add Category</a>
                             </li>
                         </ul>
                     </div>
@@ -27,7 +27,6 @@
                         <table class="table all-package theme-table table-product" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Option</th>
                                 </tr>
@@ -36,18 +35,12 @@
                             <tbody>
                                 @forelse ($categories as $category)
                                 <tr>
-                                    <td>
-                                        <div class="table-image">
-                                            <img src="{{$category->image}}" class="img-fluid"alt="">
-                                        </div>
-                                    </td>
-
                                     <td>{{$category->name}}</td>
 
                                     <td>
                                         <ul>
                                             <li title="View category">
-                                                <a href="{{route('category.show', $category->id)}}">
+                                                <a href="{{route('admin.category.show', $category->id)}}">
                                                     <i class="ri-eye-line"></i>
                                                 </a>
                                             </li>
@@ -76,7 +69,7 @@
                                                     <p>Deleting <strong>{{$category->name}}</strong> will remove its reocrd and related records</p>
                                                 </div>
                                             </div>
-                                            <form class="modal-footer" method="POST" action="{{route('category.delete', $category->id)}}">
+                                            <form class="modal-footer" method="POST" action="{{route('admin.category.delete', $category->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="d-flex justify-content-center my-3" style="gap: 9px">

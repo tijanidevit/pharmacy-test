@@ -15,7 +15,7 @@
                             <h5>Moderator Information</h5>
                         </div>
 
-                        <form class="theme-form theme-form-2 mega-form" method="POST" enctype="multipart/form-data" action="{{route('moderator.store')}}">
+                        <form class="theme-form theme-form-2 mega-form" method="POST" enctype="multipart/form-data" action="{{route('admin.moderator.store')}}">
                             @csrf
                             <div class="mb-4 row align-items-center">
                                 <label class="form-label-title col-sm-3 mb-0">Moderator Name</label>
