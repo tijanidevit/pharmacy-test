@@ -16,6 +16,7 @@
 
 #### Admin
 
+-   Login credentials email :`admin@lytton.com`, password : `password`
 -   Can add and view all customers
 -   Can add and view all categories
 -   Can add and view all products and products sales

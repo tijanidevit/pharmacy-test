@@ -78,10 +78,6 @@
                             <li>
                                 <a href="{{route('admin.sale.index')}}">Sales</a>
                             </li>
-
-                            <li>
-                                <a href="{{route('admin.sale.create')}}">Add New Sale</a>
-                            </li>
                         </ul>
                     </li>
 

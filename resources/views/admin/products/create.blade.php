@@ -77,7 +77,7 @@
                             <div class="mb-4 row align-items-center">
                                 <label class="form-label-title col-sm-3 mb-0">Description</label>
                                 <div class="col-sm-9">
-                                    <input required class="form-control" name="description" value="{{old('description')}}" type="text" placeholder="Description">
+                                    <textarea required class="form-control" name="description" type="text" placeholder="Description">{{old('description')}}</textarea>
                                     @error('description')
                                     <p class="text-danger">{{$message}}</p>
                                     @enderror
