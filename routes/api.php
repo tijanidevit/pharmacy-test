@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Partner\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Stock;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +15,12 @@ use App\Models\Stock;
 |
 */
 
+Route::middleware('api')->group(function () {
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products/{productId}/stocks', function ($productId){
-    return response(Stock::where('product_id', $productId)->get());
-})->name('api.product.stocks');

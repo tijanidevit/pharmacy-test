@@ -1,26 +1,40 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Partner;
 
-use App\Services\AuthService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Services\Api\AuthService;
 use App\Http\Requests\Auth\LoginRequest;
+use Exception;
+use App\Traits\ResponseTrait;
 
 class AuthController extends Controller
 {
+    use ResponseTrait;
+
     public function __construct(protected AuthService $authService) {
     }
 
-    function login(LoginRequest $request) {
 
-       if ($this->authService->login($request->validated())) {
-       }
+    public function login(LoginRequest $request) {
+        try {
+            $response = $this->authService->login($request->validated());
+            return $this->successResponse('Login successful', $response);
+        } catch (Exception $ex) {
+            return $this->errorResponse($ex->getMessage(), 422);
+        }
+
     }
 
-    function register(LoginRequest $request) {
+    public function register(RegisterRequest $request) {
+        try {
+            $response = $this->authService->register($request->validated());
+            return $this->successResponse('Registration successful', $response);
 
-       if ($this->authService->register($request->validated())) {
-       }
-
+        } catch (Exception $ex) {
+            return $this->errorResponse($ex->getMessage());
+        }
     }
 
     function logout() {

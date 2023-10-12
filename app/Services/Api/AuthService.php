@@ -1,16 +1,33 @@
 <?php
-
-
 namespace App\Services\Api;
 
-use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
+use Exception;
+use App\Http\Resources\PharmacyResource;
+use Illuminate\Support\Facades\Hash;
 class AuthService {
 
+    public function __construct(protected User $user) {
+    }
 
-    public function login($data) : bool {
-        if (Auth::attempt($data)){
+    public function register(array $data): array
+    {
+        $data['password'] = Hash::make($data['password']);
+        $pharmacy = $this->user->create($data);
+        auth()->loginUsingId($pharmacy->id);
+        $token = $pharmacy->createToken('auth')->plainTextToken;
+        $pharmacy = new PharmacyResource(auth()->user());
+        return compact('pharmacy','token');
+    }
 
+    public function login(array $data)
+    {
+        if (auth()->attempt($data)) {
+            $pharmacy = auth()->user();
+            $token = $pharmacy->createToken('auth')->plainTextToken;
+            $pharmacy = new PharmacyResource($pharmacy);
+            return compact('pharmacy','token');
         }
+        throw new Exception('Invalid Password');
     }
 }
