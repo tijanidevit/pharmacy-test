@@ -39,7 +39,7 @@ class ProductService {
 
     public function buyProduct($id, $quantity) {
         $paystackResponse = json_decode($this->paystackService->acceptPayment(3000));
-        if (!$paystackResponse->status) {
+        if (!$paystackResponse || !$paystackResponse->status) {
             return false;
         }
         else{

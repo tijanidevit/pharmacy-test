@@ -17,7 +17,9 @@
             </div>
 
             <div class="col-sm-6 col-xxl-6 col-lg-6">
-
+                @if (session('success'))
+                    <div class="alert btn-orange">{{session('success')}}</div>
+                @endif
                 <div class="custom-1-bg b-r-4">
                     <div class="media align-items-center static-top-widget">
                         <div class="media-body p-0">
