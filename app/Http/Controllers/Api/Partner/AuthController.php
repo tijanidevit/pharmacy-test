@@ -20,6 +20,7 @@ class AuthController extends Controller
 
        if ($this->authService->register($request->validated())) {
        }
+
     }
 
     function logout() {
