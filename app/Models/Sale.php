@@ -17,8 +17,8 @@ class Sale extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function owner(): BelongsTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, 'customer_id');
     }
 }

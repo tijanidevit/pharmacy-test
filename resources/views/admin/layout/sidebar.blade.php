@@ -4,7 +4,7 @@
         <div class="logo-wrapper logo-wrapper-center">
             <a class="" href="{{route('admin.dashboard')}}" data-bs-original-title="" title="">
                 {{-- <img class="img-fluid for-white" src="assets/images/logo/full-white.png" alt="logo"> --}}
-                <h3 class="text-white">Jendol {{auth()->user()->role}}</h3>
+                <h3 class="text-white">Lytton {{auth()->user()->role}}</h3>
             </a>
             <div class="back-btn">
                 <i class="fa fa-angle-left"></i>
@@ -18,7 +18,7 @@
                 {{-- <img class="img-fluid main-logo main-white" src="assets/images/logo/logo.png" alt="logo">
                 <img class="img-fluid main-logo main-dark" src="assets/images/logo/logo-white.png"
                     alt="logo"> --}}
-                <h3 class="text-white">Jendol {{auth()->user()->role}}</h3>
+                <h3 class="text-white">Lytton {{auth()->user()->role}}</h3>
             </a>
         </div>
         <nav class="sidebar-main">

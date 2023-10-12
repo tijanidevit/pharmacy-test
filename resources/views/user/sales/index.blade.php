@@ -1,7 +1,7 @@
-@extends('admin.layout.app')
+@extends('user.layout.app')
 
 @section('title')
-    Sales
+Purchases
 @endsection
 
 @section('body')
@@ -10,7 +10,7 @@
         <div class="card card-table">
             <div class="card-body">
                 <div class="title-header option-title d-sm-flex d-bale">
-                    <h5>Sales List</h5>
+                    <h5>Purchase List</h5>
                 </div>
                 <div>
                     @if (session('success'))
@@ -21,19 +21,17 @@
                         <table class="table all-package theme-table table-product" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Customer</th>
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Price (&#8358;)</th>
                                     <th>Pharmacy</th>
-                                    <th>Sales date</th>
+                                    <th>Purchase date</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @forelse ($sales as $sale)
                                 <tr>
-                                    <td>{{$sale->customer?->name}}</td>
                                     <td>{{$sale->product?->name}}</td>
                                     <td>{{$sale->quantity}}</td>
                                     <td>{{$sale->price}}</td>

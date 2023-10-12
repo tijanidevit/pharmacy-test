@@ -11,7 +11,7 @@ class AuthUtil{
 
         return match ($role) {
             UserRoleEnum::ADMIN => to_route('admin.dashboard'),
-            UserRoleEnum::CUSTOMER => to_route('customer.dashboard'),
+            UserRoleEnum::CUSTOMER => to_route('customer.product.index'),
         };
     }
 }

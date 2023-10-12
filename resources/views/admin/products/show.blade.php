@@ -20,6 +20,7 @@
 
             <div class="card-body p-0">
                 <div>
+                    <h4 class="mb-2">Product Sales</h4>
                     @if (session('success'))
                     <div class="alert btn-orange">{{session('success')}}</div>
                     @endif
@@ -30,7 +31,7 @@
                                     <th>Purchase date</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
-                                    {{-- <th>Option</th> --}}
+                                    <th>Bought by</th>
                                 </tr>
                             </thead>
 
@@ -41,6 +42,7 @@
                                     <td>{{$sale->created_at->format('d-m-Y')}}</td>
                                     <td>{{$sale->quantity}}</td>
                                     <td>&#8358;{{$sale->price}}</td>
+                                    <td>{{$sale->customer?->name}}</td>
                                 </tr>
 
                                 @empty

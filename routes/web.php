@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\SaleController as AdminSaleController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\NotificationController as AdminNotificationController;
 
+
+//User Controllers
+use App\Http\Controllers\User\ProductController as UserProductController;
+use App\Http\Controllers\User\SaleController as UserSaleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,7 +75,7 @@ Route::middleware('auth')->group(function () {
             Route::get('', [AdminCustomerController::class, 'index'])->name('index');
             Route::get('new', [AdminCustomerController::class, 'create'])->name('create');
             Route::post('', [AdminCustomerController::class, 'store'])->name('store');
-            Route::get('{id}', [AdminCustomerController::class, 'store'])->name('show');
+            // Route::get('{id}', [AdminCustomerController::class, 'show'])->name('show');
         });
 
         Route::prefix('notifications')->as('notification.')->group(function () {
@@ -81,8 +85,19 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('customer')->as('customer.')->middleware(['isCustomer'])->group(function () {
         Route::get('',function () {
-            return to_route('dashboard');
+            return to_route('product.index');
         })->name('home');
+
+        Route::prefix('products')->as('product.')->group(function () {
+            Route::get('', [UserProductController::class, 'index'])->name('index');
+            Route::get('{id}', [UserProductController::class, 'show'])->name('show');
+
+            Route::post('{id}/buy', [UserProductController::class, 'buy'])->name('buy');
+        });
+
+        Route::prefix('purchases')->as('purchase.')->group(function () {
+            Route::get('', [UserSaleController::class, 'index'])->name('index');
+        });
     });
 
 });

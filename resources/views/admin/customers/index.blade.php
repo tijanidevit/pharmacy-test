@@ -32,7 +32,7 @@
                                     <th>Email address</th>
                                     <th>Address</th>
                                     <th>Date added</th>
-                                    <th>Action</th>
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                             </thead>
 
@@ -50,15 +50,15 @@
                                     <td>{{$customer->address}}</td>
                                     <td>{{$customer->created_at->format('d/m/Y')}}</td>
 
-                                    <td>
+                                    {{-- <td>
                                         <ul>
                                             <li title="View customer">
                                                 <a href="{{route('admin.customer.show', $customer->id)}}">
-                                                    Purchases
+                                                    View Purchases
                                                 </a>
                                             </li>
                                         </ul>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @empty
                                 <p>No customer added yet</p>

@@ -8,7 +8,7 @@ use App\Models\Stock;
 
 class AddSaleRequest extends FormRequest
 {
-    public function __construct(protected StockService $stockService) {
+    public function __construct(protected StockService $saleService) {
     }
     /**
      * Determine if the user is authorized to make this request.
@@ -25,19 +25,18 @@ class AddSaleRequest extends FormRequest
      */
     public function rules(): array
     {
-        // $quantity = Stock::firstWhere('id', $this->stock_id)?->remaining_quantity ?? 10000000;
         return [
-            'stock_id' => 'required|exists:stocks,id',
+            'sale_id' => 'required|exists:sales,id',
             'product_id' => 'required|exists:products,id',
             // 'quantity' => 'required|integer|min:1|max:'. $quantity,
-            'quantity' => 'required|integer|min:1|max:'. $this->stockService->getByParam(['id' => $this->stock_id])->remaining_quantity,
+            'quantity' => 'required|integer|min:1|max:'. $this->saleService->getByParam(['id' => $this->sale_id])->quantity,
         ];
     }
 
     public function messages() : array {
         return [
-            'stock_id.exists' => 'Product not found',
-            // 'quantity.max' => 'Quantity is more than the ',
+            'sale_id.exists' => 'Product not found',
+            'quantity.max' => 'Quantity is more than the available quantity',
         ];
     }
 }
