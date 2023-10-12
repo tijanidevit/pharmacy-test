@@ -23,7 +23,7 @@
 
 #### Customers
 
--   Customers can either register or be added by the admin
+-   Customers can be added by the admin
 -   Customers can see products and order products
 -   Customers can then make payments
 
