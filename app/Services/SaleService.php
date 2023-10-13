@@ -30,7 +30,7 @@ class SaleService {
     }
 
     public function getAllSales() : Collection {
-        return $this->sale->with('product','product')->latest('id')->get();
+        return $this->sale->with('product','customer')->latest('id')->get();
     }
 
     public function getCustomerPurchases($customerId) {
@@ -39,6 +39,16 @@ class SaleService {
 
     function updateProductQuantity($productId, $quantity) : bool {
         return $this->product->where('id', $productId)->decrement('quantity',$quantity);
+    }
+
+
+    public function getPartnerSales($pharmacyId) : Collection {
+        return $this->sale
+            ->with('product','customer')
+            ->whereHas('product', function ($query) use($pharmacyId) {
+                return $query->where('owner_id', $pharmacyId);
+            })
+            ->latest('id')->get();
     }
 
 

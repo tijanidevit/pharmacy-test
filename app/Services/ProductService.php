@@ -27,25 +27,28 @@ class ProductService {
         return $this->product->whereId($id)->delete();
     }
 
-    public function getProductStocks($product) : Collection {
-        return $product->stocks()->get();
+    public function getAllProducts($ownerId = null) : Collection {
+        return $this->product
+            ->with('category', 'owner')
+            ->latest('id')
+            ->when($ownerId, function ($query) use ($ownerId) {
+                return $query->where('owner_id', $ownerId);
+            })
+            ->get();
     }
-
-    public function getAllProducts() : Collection {
-        return $this->product->with('category')->latest('id')->get();
-    }
-
 
 
     public function buyProduct($id, $quantity) {
-        $paystackResponse = json_decode($this->paystackService->acceptPayment(3000));
+        $product = $this->product->whereId($id)->first();
+        $price = $quantity * $product->price;
+
+        $paystackResponse = json_decode($this->paystackService->acceptPayment($price));
         if (!$paystackResponse || !$paystackResponse->status) {
             return false;
         }
         else{
             //Assumes the payment is successful and add new sales
-            $product = $this->product->whereId($id)->first();
-            $price = $quantity * $product->price;
+
             $product->sales()->create([
                 'customer_id' => auth()->id(),
                 'quantity' => $quantity,

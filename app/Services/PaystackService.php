@@ -8,8 +8,8 @@ class PaystackService implements IPayment {
         $url = "https://api.paystack.co/transaction/initialize";
 
         $fields = [
-            'email' => "customer@email.com",
-            'amount' => "20000"
+            'email' => auth()->user()->email,
+            'amount' => $amount * 100
         ];
 
         $fields_string = http_build_query($fields);

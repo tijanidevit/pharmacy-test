@@ -35,7 +35,7 @@
 
 ##### Postman Collection
 
--   [Postman Collection](https://documenter.getpostman.com/)
+-   [Postman Collection](https://documenter.getpostman.com/view/11547438/2s9YR3dvnG)
 -   It contains some documentation
 -   Please select the dev environment as the active enviroment.
 
